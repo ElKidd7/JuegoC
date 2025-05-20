@@ -70,19 +70,74 @@ No se obliga a defenderse del jaque, solo se cuenta el número.
 
 struct Piezas 
 {
-    char piezas;
+    char tipo;
+    char color; // 'B' para blancas, 'N' para negras
 };
 
-struct Jugador
+struct Piezas tablero [FILAS][COLUMNAS];
+int jaque_blancas = 0;
+int jaque_negras = 0;
+
+void iniciarTablero()
 {
-    char nombre[50];
-    int piezasRestantes;
-    int jaquesRealizados;
-    int jaquesRecibidos;
-    struct Piezas tablero[FILAS][COLUMNAS];
+    int i, j;
+    for (i = 0; i < FILAS; i++){
+        for (j = 0; j < COLUMNAS; j++){
+            tablero[i][j].tipo = ' ';
+            tablero[i][j].color = ' ';
+        }
+    }
+    /*====================Negras======================*/
+    tablero[0][0].tipo = 'P'; tablero[0][0].color = 'N';
+    tablero[0][1].tipo = 'T'; tablero[0][1].color = 'N';
+    tablero[0][2].tipo = 'D'; tablero[0][2].color = 'N';
+    tablero[0][3].tipo = 'R'; tablero[0][3].color = 'N';
+    tablero[0][4].tipo = 'A'; tablero[0][4].color = 'N';
+    tablero[0][5].tipo = 'C'; tablero[0][5].color = 'N';
 
-};
+    tablero[1][2].tipo = 'P'; tablero[1][2].color = 'N';
+    tablero[1][3].tipo = 'P'; tablero[1][3].color = 'N';
+    /*====================Negras======================*/
 
+
+    /*====================Blancas======================*/
+    tablero[5][0].tipo = 'P'; tablero[5][0].color = 'B';
+    tablero[5][1].tipo = 'T'; tablero[5][1].color = 'B';
+    tablero[5][2].tipo = 'D'; tablero[5][2].color = 'B';
+    tablero[5][3].tipo = 'R'; tablero[5][3].color = 'B';
+    tablero[5][4].tipo = 'A'; tablero[5][4].color = 'B';
+    tablero[5][5].tipo = 'C'; tablero[5][5].color = 'B';
+
+    tablero[4][2].tipo = 'P'; tablero[4][2].color = 'B';
+    tablero[4][3].tipo = 'P'; tablero[4][3].color = 'B';
+
+    /*====================Blancas======================*/
+}
+
+void imprimir_tablero() {
+    printf("\033[1;37m\n  A B C D E F\n\033[0m");
+    for (int i = 0; i < FILAS; i++) {
+        printf("\033[1;37m%d \033[0m", i + 1);
+        for (int j = 0; j < COLUMNAS; j++) {
+            if (tablero[i][j].tipo == ' ') {
+                printf(". ");
+            } else if (tablero[i][j].color == 'B') {
+                printf("\033[1;32m%c \033[0m", tablero[i][j].tipo);  // Azul para blancas
+            } else {
+                printf("\033[1;31m%c \033[0m", tablero[i][j].tipo);  // Rojo para negras
+            }
+        }
+        printf("\n");
+    }
+}
+
+
+
+
+void limiparPantalla()
+{
+    system("cls");
+}
 
 
 

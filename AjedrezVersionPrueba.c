@@ -48,14 +48,14 @@ void inicializar_tablero() {
 }
 
 void imprimir_tablero() {
-    printf("\033[1;37m\n   A B C D E F\n\033[0m");
+    printf("\033[1;37m\n  A B C D E F\n\033[0m");
     for (int i = 0; i < FILAS; i++) {
         printf("\033[1;37m%d \033[0m", i + 1);
         for (int j = 0; j < COLUMNAS; j++) {
             if (tablero[i][j].tipo == ' ') {
                 printf(". ");
             } else if (tablero[i][j].color == 'B') {
-                printf("\033[1;34m%c \033[0m", tablero[i][j].tipo);  // Azul para blancas
+                printf("\033[1;32m%c \033[0m", tablero[i][j].tipo);  // Azul para blancas
             } else {
                 printf("\033[1;31m%c \033[0m", tablero[i][j].tipo);  // Rojo para negras
             }
